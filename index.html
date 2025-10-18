@@ -1,475 +1,414 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="BREEZE: Behavior-Regularized Diffusion Policy for Zero-Shot Reinforcement Learning.">
+    <meta name="keywords"
+          content="Zero-Shot Reinforcement Learning, Diffusion Policy, Regularization, Transformer, BREEZE, NeurIPS 2025">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BREEZE</title>
 
-  <script>
-    window.dataLayer = window.dataLayer || [];
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-    gtag('js', new Date());
+        gtag('js', new Date());
 
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
+            svg: {fontCache: 'global'}
+        };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
 </head>
 <body>
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
         </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
     </div>
+    <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+            <a class="navbar-item" href="https://arwen-c.github.io/">
+                <span class="icon"><i class="fas fa-home"></i></span>
+            </a>
 
-  </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">More Projects</a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="https://zhengyinan-air.github.io/FISOR/">FISOR</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
 
 
 <section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Towards Robust Zero-Shot Reinforcement Learning</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              Kexin Zhang<sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://arwen-c.github.io">Lauriane Teyssier</a><sup>2</sup>,</span>
-            <span class="author-block">
-              Yinan Zheng<sup>2</sup>,
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">Towards Robust Zero-Shot Reinforcement Learning</h1>
+                    <p class="is-size-5">
+                        <strong>NeurIPS 2025</strong>
+                    </p>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">
+              <a href="https://arwen-c.github.io">Lauriane Teyssier </a><sup>2*</sup>,</span>
+                        <span class="author-block">
+                            <a href="https://air-dream.netlify.app/author/kexin-zheng/"> Kexin Zheng </a><sup>1*</sup>,</span>
+                        <span class="author-block">
+                            <a href="https://github.com/ZhengYinan-AIR">Yinan Zheng</a><sup>2</sup>,
             </span>
-            <span class="author-block">
+                        <span class="author-block">
               Yu Luo<sup>2</sup>,
             </span>
-            <span class="author-block">
-              <a href="https://zhanxianyuan.xyz/">Xianyuan Zhan</a><sup>2</sup>,
+                        <span class="author-block">
+              <a href="https://zhanxianyuan.xyz/">Xianyuan Zhan </a><sup>2✉</sup>,
             </span>
-          </div>
+                    </div>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Tsinghua University</span>
-            <span class="author-block"><sup>1</sup>The Chinese University of Hong Kong </span>
-            <span class="author-block"><sup>2</sup>Huawei Noah’s Ark Lab 4 </span>
-            <span class="author-block"><sup>1</sup>Shanghai Artificial Intelligence Laboratory</span>
-          </div>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block"><sup>1</sup>Tsinghua University</span>
+                        <span class="author-block"><sup>1</sup>The Chinese University of Hong Kong </span>
+                        <span class="author-block"><sup>2</sup>Huawei Noah’s Ark Lab 4 </span>
+                        <span class="author-block"><sup>1</sup>Shanghai Artificial Intelligence Laboratory</span>
+                    </div>
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/Whiterrrrr/BREEZE/"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-                </span>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block"><sup>*</sup>Equal contribution</span>
+                        <span class="author-block"><sup>✉</sup>Corresponding author</span>
+                    </div>
+
+
+                    <div class="buttons is-centered">
+                        <a class="button is-dark is-rounded" href="https://arxiv.org/pdf/xxxx.xxxxx.pdf"><i
+                                class="fas fa-file-pdf"></i>&nbsp;Openreview</a>
+                        <a class="button is-dark is-rounded" href="https://arxiv.org/abs/xxxx.xxxxx"><i
+                                class="ai ai-arxiv"></i>&nbsp;arXiv</a>
+                        <a class="button is-dark is-rounded" href="https://github.com/Whiterrrrr/BREEZE/"><i
+                                class="fab fa-github"></i>&nbsp;Code</a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
+<!-- TEASER / MAIN FIGURE -->
 <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
-      </h2>
+    <div class="container is-max-desktop has-text-centered">
+        <img src="./static/images/method_illustration.png" alt="BREEZE Framework Overview" width="90%">
     </div>
-  </div>
 </section>
 
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+<!-- 1. RESEARCH QUESTION -->
 <section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+    <div class="container is-max-desktop">
+        <h2 class="title is-2">BREEZE FRAMEWORK</h2>
         <div class="content has-text-justified">
-          <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
             <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
+                Zero-shot reinforcement learning aims to create <b>generalist agents</b> that can adapt to entirely new
+                tasks without retraining—a crucial step toward scalable, autonomous intelligence.
+                However, current methods remain limited by <b>weak expressivity</b> and unstable training.
             </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
+            <p>
+                BREEZE is an FB-based framework that simultaneously <b>enhances learning stability, policy extraction
+                capability, and representation learning quality</b>, through three key designs:
 
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
+            <ul>
+                <li><b>Regularization</b> in zero-shot RL policy learning, transforming policy optimization into a
+                    stable in-sample learning paradigm.
+                </li>
+                <li><b>Diffusion policy extraction</b>, enabling the generation of high-quality and
+                    multimodal action distributions in zero-shot RL settings.
+                </li>
+                <li><b>Attention-based architectures</b> for representation modeling to capture the complex
+                    relationships
+                    between environmental dynamics.
+                </li>
+            </ul>
+            </p>
+            <div class="has-text-centered">
+                <img src="./static/images/architecture.png" alt="Transformer Architecture"
+                     width="50%">
+                <p class="has-text-centered"><em>Figure:</em> BREEZE Transformer-like architecture for F (left) and B
+                    (right)</p>
             </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
         </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
     </div>
-    <!--/ Animation. -->
+</section>
+
+<!-- 2. FRAMEWORK -->
+<!--<section class="section">-->
+<!--    <div class="container is-max-desktop">-->
+<!--        <h2 class="title is-2">The BREEZE Framework</h2>-->
+<!--        <p class="has-text-justified">-->
+<!--            Our framework integrates three synergistic components that together enable robust zero-shot RL:-->
+<!--        </p>-->
+
+<!--        &lt;!&ndash; Transformer Architecture &ndash;&gt;-->
+<!--        <h3 class="title is-3">Transformer-Based Representation Learning</h3>-->
+<!--        <div class="columns is-vcentered">-->
+<!--            <div class="column is-half">-->
+<!--                <img src="./static/images/architecture.png" alt="Transformer Architecture"-->
+<!--                     width="100%">-->
+<!--            </div>-->
+<!--            <div class="column content">-->
+<!--                <p>-->
+<!--                    BREEZE employs <strong>attention-based Forward and Backward networks</strong> to jointly encode-->
+<!--                    state, action, and task embeddings. These representations capture dependencies between behavior-->
+<!--                    dynamics-->
+<!--                    and environment variations, providing expressive latent spaces for policy inference.-->
+<!--                </p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Behavior Regularization &ndash;&gt;-->
+<!--        <h3 class="title is-3">Behavior-Regularized Learning</h3>-->
+<!--        <div class="content has-text-justified">-->
+
+<!--            <p>-->
+<!--                To ensure stable representation learning, <strong>BREEZE</strong> introduces an-->
+<!--                <strong>out-of-distribution (OOD)-robust value regularization</strong> that constrains-->
+<!--                Q-value estimates and prevents overestimation on unseen states. This regularization combines-->
+<!--                an <strong>expectile regression loss</strong> with a <strong>KL divergence penalty</strong>-->
+<!--                between the learned and behavior policies, improving stability under distributional shift.-->
+<!--            </p>-->
+
+<!--            <p>-->
+<!--                The value function is trained via an expectile regression objective that encourages-->
+<!--                conservative,-->
+<!--                stable value estimation:-->
+<!--            </p>-->
+
+<!--            <p style="text-align:center;">-->
+<!--                $$\mathcal{L}_{V_{\pi_z}} =-->
+<!--                \mathbb{E}_{(s,a)\sim\mathcal{D},\,z\sim\mathcal{Z}}\!-->
+<!--                \Big[-->
+<!--                L_2^{\tau}\big(-->
+<!--                F(s,a,z)^{\top}z - V_{\pi_z}(s,z)-->
+<!--                \big)-->
+<!--                \Big],$$-->
+<!--                where \(L_2^{\tau}(u) = |\tau - \mathbb{I}(u>0)|u^2\), and \(\tau > 0.5\) controls the-->
+<!--                conservativeness of value fitting.-->
+<!--            </p>-->
+
+<!--            <p>-->
+<!--                Given the task-specific reward function \(r_z\), the corresponding Bellman operator integrates-->
+<!--                this regularization into policy evaluation:-->
+<!--            </p>-->
+
+<!--            <p style="text-align:center;">-->
+<!--                $$(\mathcal{T}^{\pi}Q_z)(s,a,z) =-->
+<!--                \mathbb{E}_{s'\sim\mathcal{P}(s'|s,a)}\!-->
+<!--                \left[-->
+<!--                r_z(s') + \gamma V_{\pi_z}(s',z)-->
+<!--                \right].$$-->
+<!--            </p>-->
+
+<!--            <p>-->
+<!--                Finally, the successor-measure learning objective is regularized to align forward and backward-->
+<!--                representations, producing stable estimates across diverse tasks:-->
+<!--            </p>-->
+
+<!--            <p style="text-align:center;">-->
+<!--                $$\mathcal{L}_{F\text{-reg}} =-->
+<!--                \mathbb{E}_{(s,a,s')\sim\mathcal{D}}\!-->
+<!--                \Big[-->
+<!--                \big(-->
+<!--                F(s,a,z)^{\top}z - -->
+<!--                B(s')^{\top}\mathbb{E}_{\mathcal{D}}[BB^{\top}]^{-1}z - -->
+<!--                \gamma V_{\pi_z}(s',z)-->
+<!--                \big)^2-->
+<!--                \Big].$$-->
+<!--            </p>-->
+
+<!--            <p>-->
+<!--                Together, these components form a stable, in-sample learning paradigm that mitigates OOD-->
+<!--                extrapolation errors and improves generalization.-->
+<!--                For detailed derivations, see <em>Equations (7–10)</em> in the-->
+<!--                <a href="./static/paper/breeze_final.pdf" target="_blank">BREEZE paper</a>.-->
+<!--            </p>-->
+<!--        </div>-->
 
 
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
+<!--        &lt;!&ndash; Diffusion Policy &ndash;&gt;-->
+<!--        <h3 class="title is-3">Diffusion Policy for Zero-Shot Generalization</h3>-->
+<!--        <div class="column content has-text-justified">-->
 
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
+<!--            <p>-->
+<!--                Unlike standard Gaussian policies, <strong>BREEZE</strong> extracts a-->
+<!--                <strong>task-conditioned diffusion model</strong> that enables-->
+<!--                <em>expressive, multi-modal action distributions</em>.-->
+<!--                This diffusion-based policy integrates the learned value function and-->
+<!--                successor features to achieve stable, zero-shot generalization without fine-tuning.-->
+<!--            </p>-->
+
+<!--            <p>-->
+<!--                The resulting optimal policy is expressed as a-->
+<!--                <strong>value-weighted behavior cloning objective</strong>,-->
+<!--                combining the dataset’s behavior policy $\mu(a|s)$-->
+<!--                with value-based weighting:-->
+<!--            </p>-->
+
+<!--            <p style="text-align:center;">-->
+<!--                $$\pi_z^*(a|s) \propto-->
+<!--                \mu(a|s)\,-->
+<!--                \exp\!\left[-->
+<!--                \alpha \cdot-->
+<!--                \big(-->
+<!--                F(s, a, z)^\top z - V_{\pi_z}(s, z)-->
+<!--                \big)-->
+<!--                \right],$$-->
+<!--            </p>-->
+
+<!--            <p>-->
+<!--                where $\alpha$ is a temperature parameter controlling the balance between-->
+<!--                conservatism and expressivity. The exponential term-->
+<!--                re-weights actions by their advantage under the learned successor representation-->
+<!--                $F(s,a,z)$ and value function $V_{\pi_z}(s,z)$.-->
+<!--                This formulation ensures that the diffusion model samples high-value,-->
+<!--                in-distribution actions — yielding robust and diverse zero-shot behaviors.-->
+<!--            </p>-->
+
+<!--            <p>-->
+<!--                For full derivation and algorithmic context, see-->
+<!--                <em>Equation&nbsp;(12)</em> in the-->
+<!--                <a href="./static/paper/breeze_final.pdf" target="_blank">BREEZE paper</a>.-->
+<!--            </p>-->
+
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</section>-->
+
+<!-- 3. EXPERIMENTS -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-2">Experiments</h2>
+        <p>
+            We evaluate BREEZE on standard benchmarks including <strong>ExORL</strong> and <strong>D4RL-Franka
+            Kitchen</strong>.
+            Our experiments assess zero-shot policy performance, robustness under distribution shifts, and ablation
+            studies on regularization and diffusion components.
+        </p>
+
+        <div class="columns is-vcentered">
+            <div class="column">
+                <img src="./static/images/env.png" alt="Environment" width="100%">
+                <p class="has-text-centered"><em>Figure:</em>We demonstrate our method results on 4 different
+                    environments.</p>
+            </div>
         </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
+        <p>
+            BREEZE consistently achieves top or near-top returns across benchmarks, demonstrating strong zero-shot
+            generalization.
+            It enhances the generalization ability of vanilla FB methods, converges faster, and reaches higher
+            performance with smoother, more stable learning curves.
+        </p>
 
-  </div>
+        <div class="column">
+            <img src="./static/images/quadruped-rnd.png" alt="Results Figure" width="100%">
+            <img src="./static/images/jaco-rnd.png" alt="Results Figure" width="100%">
+            <img src="./static/images/walker-rnd.png" alt="Results Figure" width="100%">
+            <p class="has-text-centered"><em>Figure:</em> BREEZE achieves superior zero-shot performance across
+                tasks.</p>
+        </div>
+        <div class="column">
+            <img src="./static/images/results_table.png" alt="Results Table" width="100%">
+            <p class="has-text-centered"><em>Figure:</em> BREEZE achieves superior zero-shot performance across
+                tasks.</p>
+        </div>
+        <p>
+            Our design corrects the distorted
+            \( M^{\pi} \) and \( Q \) distributions of earlier FB frameworks,
+            yielding stable, properly scaled value representations.
+        </p>
+
+        <div class="column">
+            <img src="./static/images/walker-stand-M.png" alt="Results Figure" width="24%">
+            <img src="./static/images/walker-flip-M.png" alt="Results Figure" width="24%">
+            <img src="./static/images/walker-stand-V.png" alt="Results Figure" width="24%">
+            <img src="./static/images/walker-flip-V.png" alt="Results Figure" width="24%">
+            <p class="has-text-centered"><em>Figure:</em> BREEZE enables more realistic distribution learning of M (two
+                left figures) and Q (two right figures) values.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 4. CONCLUSION -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-2">4. Conclusion & Discussion</h2>
+        <div class="content has-text-justified">
+            <p>
+                BREEZE unifies <b>diffusion-based policies</b>, <b>transformer encoders</b>, and <b>behavior-regularized
+                learning</b> to achieve stable, expressive zero-shot reinforcement learning. By mitigating extrapolation
+                errors and enhancing policy expressivity, it delivers consistent generalization across tasks.
+            </p>
+            <p>
+                The main trade-off lies between <b>computational cost versus performance</b>, as diffusion sampling and
+                expressive architectures improve robustness at the expense of efficiency.
+                Future work will focus on reducing this overhead through lighter generative policies and exploring
+                theoretical guarantees for behavior-regularized generalization.
+            </p>
+        </div>
+    </div>
 </section>
 
 
 <section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@inproceedings{zheng2025towards,
-      title={Towards Robust Zero-Shot Reinforcement Learning},
-      author={Kexin Zheng and Lauriane Teyssier and Yinan Zheng and Yu Luo and Xianyuan Zhan},
-      booktitle={NeurIPS},
-      year={2025}
+    <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@inproceedings{zheng2025breeze,
+  title={Towards Robust Zero-Shot Reinforcement Learning},
+  author={Kexin Zheng and Lauriane Teyssier and Yinan Zheng and Yu Luo and Xianyuan Zhan},
+  booktitle={NeurIPS},
+  year={2025}
 }</code></pre>
-  </div>
+    </div>
 </section>
 
-
+<!-- FOOTER -->
 <footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/Whiterrrrr/BREEZE/" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
+    <div class="container has-text-centered">
+        <a class="icon-link" href="./static/videos/paper.pdf"><i class="fas fa-file-pdf"></i></a>
+        <a class="icon-link" href="https://github.com/Whiterrrrr/BREEZE/"><i class="fab fa-github"></i></a>
+        <p>Website adapted from <a href="https://nerfies.github.io/">Nerfies</a> under CC-BY.</p>
     </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            Website borrowed from <a
-              href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> under a Creative Commons Attribution.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
 </footer>
 
 </body>
